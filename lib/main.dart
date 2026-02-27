@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Beautiful Counter',
+      title: 'Beautiful Counter [AlihanSDev]',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
