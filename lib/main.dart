@@ -40,6 +40,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _resetCounter() {
+    setState(() {
+      _counter = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -108,7 +114,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         AnimatedSwitcher(
                           duration: const Duration(milliseconds: 300),
                           transitionBuilder: (child, animation) {
-                            return ScaleTransition(scale: animation, child: child);
+                            return ScaleTransition(
+                              scale: animation,
+                              child: child,
+                            );
                           },
                           child: Text(
                             '$_counter',
@@ -125,12 +134,28 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 24),
               Text(
-                'Нажмите кнопку, чтобы увеличить',
+                'Нажмите кнопку, чтобы увеличить — или сбросьте',
+                textAlign: TextAlign.center,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: theme.colorScheme.onPrimaryContainer,
                 ),
+              ),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton.icon(
+                    onPressed: _resetCounter,
+                    icon: const Icon(Icons.refresh),
+                    label: const Text('СБРОС'),
+                    style: TextButton.styleFrom(
+                      foregroundColor: theme.colorScheme.primary,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -139,11 +164,11 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        icon: const Icon(Icons.add),
+        tooltip: 'Добавить',
+        icon: const Icon(Icons.add_circle_outline),
         label: const Text(
-          'УВЕЛИЧИТЬ',
-          style: TextStyle(letterSpacing: 1.2, fontWeight: FontWeight.bold),
+          'Добавить',
+          style: TextStyle(letterSpacing: 1.0, fontWeight: FontWeight.w600),
         ),
         elevation: 6,
       ),
