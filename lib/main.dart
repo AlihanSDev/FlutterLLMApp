@@ -12,7 +12,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isDarkMode = false;
+  bool _isDarkMode = false; // new state variable to track theme mode
 
   @override
   Widget build(BuildContext context) {
