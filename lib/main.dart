@@ -48,10 +48,7 @@ class _MyAppState extends State<MyApp> {
 class MyHomePage extends StatefulWidget {
   final Function(bool) onThemeChanged;
 
-  const MyHomePage({
-    super.key,
-    required this.onThemeChanged,
-  });
+  const MyHomePage({super.key, required this.onThemeChanged});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -123,10 +120,7 @@ class _MyHomePageState extends State<MyHomePage>
       appBar: AppBar(
         title: const Text(
           '✨ Интеллектуальный Счетчик',
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            letterSpacing: 0.5,
-          ),
+          style: TextStyle(fontWeight: FontWeight.w700, letterSpacing: 0.5),
         ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -181,7 +175,6 @@ class _MyHomePageState extends State<MyHomePage>
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const SizedBox(height: 16),
-                // Основная карточка со счетчиком
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Card(
@@ -225,15 +218,14 @@ class _MyHomePageState extends State<MyHomePage>
                               ),
                             ),
                             const SizedBox(height: 16),
-                            // Анимированный счетчик
                             ScaleTransition(
                               scale: Tween<double>(begin: 0.8, end: 1.0)
                                   .animate(
-                                CurvedAnimation(
-                                  parent: _animationController,
-                                  curve: Curves.elasticOut,
-                                ),
-                              ),
+                                    CurvedAnimation(
+                                      parent: _animationController,
+                                      curve: Curves.elasticOut,
+                                    ),
+                                  ),
                               child: Text(
                                 '$_counter',
                                 key: ValueKey<int>(_counter),
@@ -246,7 +238,6 @@ class _MyHomePageState extends State<MyHomePage>
                               ),
                             ),
                             const SizedBox(height: 24),
-                            // Контроль шага
                             Container(
                               decoration: BoxDecoration(
                                 color: theme.colorScheme.primaryContainer
@@ -273,7 +264,6 @@ class _MyHomePageState extends State<MyHomePage>
                   ),
                 ),
                 const SizedBox(height: 32),
-                // Выбор шага
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Card(
@@ -322,7 +312,24 @@ class _MyHomePageState extends State<MyHomePage>
                     ),
                   ),
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 24),
+                Text(
+                  'Нажмите кнопки для управления счетчиком',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                // Текстовая кнопка сброса (в теле) — дополнительный доступ
+                TextButton.icon(
+                  onPressed: _resetCounter,
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('СБРОС'),
+                  style: TextButton.styleFrom(
+                    foregroundColor: theme.colorScheme.primary,
+                  ),
+                ),
               ],
             ),
           ),
@@ -338,7 +345,6 @@ class _MyHomePageState extends State<MyHomePage>
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Кнопка уменьшения
                 FloatingActionButton(
                   heroTag: 'decrement',
                   onPressed: _decrementCounter,
@@ -346,23 +352,21 @@ class _MyHomePageState extends State<MyHomePage>
                   child: const Icon(Icons.remove, size: 28),
                 ),
                 const SizedBox(width: 16),
-                // Кнопка увеличения
                 FloatingActionButton.extended(
                   heroTag: 'increment',
                   onPressed: _incrementCounter,
-                  icon: const Icon(Icons.add, size: 28),
+                  icon: const Icon(Icons.add_circle_outline, size: 28),
                   label: const Text(
-                    'УВЕЛИЧИТЬ',
+                    'Добавить',
                     style: TextStyle(
-                      letterSpacing: 1.2,
-                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.0,
+                      fontWeight: FontWeight.w600,
                       fontSize: 14,
                     ),
                   ),
                   elevation: 8,
                 ),
                 const SizedBox(width: 16),
-                // Кнопка сброса
                 FloatingActionButton(
                   heroTag: 'reset',
                   onPressed: _resetCounter,
@@ -374,7 +378,7 @@ class _MyHomePageState extends State<MyHomePage>
               ],
             ),
             Text(
-              'Нажмите кнопки для управления счетчиком',
+              'Управление шагом и сбросом',
               style: theme.textTheme.bodySmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
                 fontStyle: FontStyle.italic,
