@@ -186,7 +186,7 @@ class _MyHomePageState extends State<MyHomePage>
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Card(
                     elevation: 12,
-                    shadowColor: theme.colorScheme.primary.withOpacity(0.3),
+                    shadowColor: theme.colorScheme.primary.withValues(alpha: 0.3),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40),
                     ),
@@ -250,7 +250,7 @@ class _MyHomePageState extends State<MyHomePage>
                             Container(
                               decoration: BoxDecoration(
                                 color: theme.colorScheme.primaryContainer
-                                    .withOpacity(0.3),
+                                    .withValues(alpha: 0.3),
                                 borderRadius: BorderRadius.circular(16),
                               ),
                               padding: const EdgeInsets.symmetric(
@@ -323,6 +323,29 @@ class _MyHomePageState extends State<MyHomePage>
                   ),
                 ),
                 const SizedBox(height: 32),
+                // Карточка с информацией
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Center(
+                        child: Text(
+                          'Шаг: $_step | Счётчик: $_counter',
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 32),
               ],
             ),
           ),
@@ -331,12 +354,11 @@ class _MyHomePageState extends State<MyHomePage>
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 20.0),
-        child: Wrap(
-          direction: Axis.vertical,
-          spacing: 12,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 // Кнопка уменьшения
                 FloatingActionButton(
@@ -347,19 +369,11 @@ class _MyHomePageState extends State<MyHomePage>
                 ),
                 const SizedBox(width: 16),
                 // Кнопка увеличения
-                FloatingActionButton.extended(
+                FloatingActionButton(
                   heroTag: 'increment',
                   onPressed: _incrementCounter,
-                  icon: const Icon(Icons.add, size: 28),
-                  label: const Text(
-                    'УВЕЛИЧИТЬ',
-                    style: TextStyle(
-                      letterSpacing: 1.2,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ),
                   elevation: 8,
+                  child: const Icon(Icons.add, size: 28),
                 ),
                 const SizedBox(width: 16),
                 // Кнопка сброса
@@ -373,6 +387,7 @@ class _MyHomePageState extends State<MyHomePage>
                 ),
               ],
             ),
+            const SizedBox(height: 12),
             Text(
               'Нажмите кнопки для управления счетчиком',
               style: theme.textTheme.bodySmall?.copyWith(
