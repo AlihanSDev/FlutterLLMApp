@@ -27,10 +27,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       darkTheme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.cyan,
-          brightness: Brightness.dark,
+
         ),
       ),
       themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
